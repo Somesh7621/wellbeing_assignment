@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CRO Proposal — Korean Marine Collagen · Wellbeing Nutrition</title>
+<script>document.documentElement.classList.remove('no-js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marine:#0C2523;--marine-2:#123634;--marine-3:#0A1F1D;
+  --bone:#ECE7DC;--bone-2:#E4DED1;--bone-dim:#B9B4A6;
+  --ink:#15201C;--ink-dim:#4C574F;
+  --honey:#CB8438;--honey-2:#B36E27;--brass:#A98A4C;--ok:#5AA17C;--warn:#C8663E;
+  --line-d:rgba(236,231,220,.16);--line-l:rgba(21,32,28,.14);
+  --serif:"Hedvig Letters Serif",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);background:#06110F;color:var(--bone);overflow:hidden;font-size:clamp(14px,1.4vw,17px);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+b,strong{font-weight:700}
+::selection{background:var(--honey);color:var(--marine-3)}
+
+.deck{position:relative;height:100vh;width:100vw;overflow:hidden}
+.slide{position:absolute;inset:0;padding:clamp(2rem,5vw,5.5rem) clamp(2rem,7vw,8rem);
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(28px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;
+  background:var(--marine);overflow-y:auto}
+.slide.active{opacity:1;visibility:visible;transform:none;z-index:2}
+.slide.light{background:var(--bone);color:var(--ink)}
+.slide.light h1,.slide.light h2,.slide.light h3{color:var(--ink)}
+.slide.deep{background:var(--marine-3)}
+
+.kick{font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--honey);display:flex;align-items:center;gap:.7rem;margin-bottom:1.5rem}
+.kick::before{content:"";width:28px;height:1px;background:var(--brass)}
+.slide.light .kick{color:var(--honey-2)}
+.eyebrow-num{font-family:var(--serif);font-style:italic;color:var(--bone-dim);font-size:1rem}
+
+h1.title{font-size:clamp(2.4rem,6vw,5rem);line-height:1;margin-bottom:1.4rem}
+h2.head{font-size:clamp(1.9rem,4.2vw,3.3rem);line-height:1.03;margin-bottom:1.4rem;max-width:22ch}
+.title .it,.head .it{font-style:italic;color:var(--honey)}
+.lede{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--bone-dim);max-width:52ch}
+.slide.light .lede{color:var(--ink-dim)}
+
+.cols{display:grid;gap:clamp(1.5rem,3vw,3.5rem)}
+.c2{grid-template-columns:1fr 1fr}
+.c2-wide{grid-template-columns:1.2fr .8fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:820px){.c2,.c2-wide,.c3{grid-template-columns:1fr}}
+
+/* lists / rows */
+.rows{display:flex;flex-direction:column;gap:0}
+.row{display:flex;gap:1.1rem;padding:.95rem 0;border-top:1px solid var(--line-d);align-items:baseline}
+.slide.light .row{border-color:var(--line-l)}
+.row:last-child{border-bottom:1px solid var(--line-d)}
+.slide.light .row:last-child{border-bottom-color:var(--line-l)}
+.row .lead{font-family:var(--serif);font-style:italic;color:var(--honey);flex:none;width:2.2rem}
+.row .rt{flex:1}
+.row .rt b{color:var(--bone)}
+.slide.light .row .rt b{color:var(--ink)}
+.row .rt span{color:var(--bone-dim)}
+.slide.light .row .rt span{color:var(--ink-dim)}
+
+/* two-panel work/leak */
+.split-list h3{font-size:1.25rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--brass);display:inline-block}
+.split-list ul{list-style:none}
+.split-list li{padding:.6rem 0;font-size:.98rem;color:var(--bone-dim);display:flex;gap:.7rem}
+.slide.light .split-list li{color:var(--ink-dim)}
+.split-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);margin-top:.55rem;flex:none}
+.split-list.leak li::before{background:var(--warn)}
+
+/* pillars grid */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-d);border:1px solid var(--line-d)}
+.pillar{background:var(--marine);padding:1.4rem 1.2rem}
+.pillar .pn{font-family:var(--serif);font-style:italic;color:var(--honey);font-size:1.1rem;margin-bottom:.5rem}
+.pillar h3{font-size:1.08rem;color:var(--bone);margin-bottom:.4rem}
+.pillar p{font-size:.85rem;color:var(--bone-dim)}
+@media(max-width:820px){.pillars{grid-template-columns:1fr 1fr}}
+
+/* stats */
+.stat-row{display:flex;gap:clamp(1.5rem,4vw,4rem);flex-wrap:wrap;margin-top:.5rem}
+.stat b{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.6rem);color:var(--honey);display:block;line-height:1}
+.slide.light .stat b{color:var(--honey-2)}
+.stat span{font-size:.85rem;color:var(--bone-dim)}
+.slide.light .stat span{color:var(--ink-dim)}
+
+/* table */
+table.ice{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:.5rem}
+table.ice th,table.ice td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--line-d)}
+table.ice thead th{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--bone-dim);border-bottom:1px solid var(--brass)}
+table.ice td.n{color:var(--bone-dim)}
+table.ice .ice-score{font-family:var(--serif);color:var(--honey);font-size:1.05rem}
+table.ice tr td:first-child{color:var(--bone-dim);font-family:var(--serif);font-style:italic}
+table.ice td b{color:var(--bone)}
+
+/* before/after */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-l);border:1px solid var(--line-l)}
+.ba>div{padding:1.3rem 1.4rem;background:var(--bone)}
+.ba .before{background:var(--bone-2)}
+.ba .tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:.8rem}
+.ba .before .tag{color:var(--ink-dim)}
+.ba .after .tag{color:var(--honey-2)}
+.ba ul{list-style:none}
+.ba li{padding:.4rem 0;font-size:.9rem;color:var(--ink-dim);display:flex;gap:.6rem}
+.ba li::before{content:"→";color:var(--brass);flex:none}
+.ba .before li::before{content:"×";color:var(--warn)}
+
+/* cover */
+.cover{position:relative;overflow:hidden}
+.cover .cover-bg{position:absolute;inset:0;z-index:0}
+.cover .cover-bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.cover .cover-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,31,29,.92),rgba(10,31,29,.55))}
+.cover .cover-in{position:relative;z-index:2}
+.cover .meta{margin-top:2.4rem;display:flex;gap:2.5rem;flex-wrap:wrap;font-size:.86rem;color:var(--bone-dim)}
+.cover .meta b{color:var(--bone);font-weight:600;display:block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.25rem}
+
+/* chips */
+.chips{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
+.chip{border:1px solid var(--line-d);padding:.45rem .9rem;font-size:.82rem;color:var(--bone-dim)}
+.slide.light .chip{border-color:var(--line-l);color:var(--ink-dim)}
+.chip b{color:var(--honey)}
+
+/* impact bar */
+.impact{display:flex;align-items:flex-end;gap:1.4rem;margin-top:1.5rem;flex-wrap:wrap}
+.impact .col{text-align:center}
+.impact .bar{width:clamp(48px,7vw,88px);background:linear-gradient(180deg,var(--honey),var(--honey-2));border-radius:2px 2px 0 0}
+.impact .col.base .bar{background:var(--line-l)}
+.slide.light .impact .col.base .bar{background:#c9c3b3}
+.impact .v{font-family:var(--serif);font-size:1.3rem;color:var(--ink);margin-bottom:.4rem}
+.impact .l{font-size:.76rem;color:var(--ink-dim);margin-top:.5rem}
+
+a.link{color:var(--honey);text-decoration:none;border-bottom:1px solid var(--brass);padding-bottom:1px}
+
+/* nav / chrome */
+.chrome{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:1rem clamp(1.2rem,4vw,2.4rem);pointer-events:none}
+.dots{display:flex;gap:.5rem;pointer-events:auto}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--line-d);border:none;cursor:pointer;transition:.25s;padding:0}
+.dot.on{background:var(--honey);transform:scale(1.35)}
+.dot:hover{background:var(--bone-dim)}
+.navb{display:flex;gap:.5rem;pointer-events:auto}
+.navb button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-d);background:rgba(10,31,29,.6);color:var(--bone);cursor:pointer;font-size:1rem;display:grid;place-items:center;transition:.2s}
+.navb button:hover{border-color:var(--honey);color:var(--honey)}
+.counter{position:fixed;top:clamp(1.2rem,3vw,2rem);right:clamp(1.2rem,4vw,2.4rem);z-index:20;font-size:.8rem;color:var(--bone-dim);letter-spacing:.05em}
+.counter b{color:var(--bone);font-family:var(--serif);font-size:1.1rem}
+.brandmark{position:fixed;top:clamp(1.2rem,3vw,2rem);left:clamp(1.2rem,4vw,2.4rem);z-index:20;display:flex;align-items:center;gap:.5rem;font-family:var(--serif);font-size:.95rem;color:var(--bone-dim)}
+.slide.light~.chrome .navb button{background:rgba(236,231,220,.6);color:var(--ink)}
+.hint{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);z-index:19;font-size:.72rem;color:var(--bone-dim);opacity:.6;letter-spacing:.04em}
+@media(max-width:820px){.hint{display:none}}
+@media(prefers-reduced-motion:reduce){.slide{transition:opacity .2s}}
+
+/* print → PDF: every slide becomes its own landscape page (sized to the verified 1366×768 layout) */
+@media print{
+  @page{size:1366px 780px;margin:0}
+  html,body{height:auto;overflow:visible;background:#06110F}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .deck{position:static;height:auto;width:auto;overflow:visible}
+  .slide{position:relative;inset:auto;height:768px;width:100%;
+    opacity:1!important;visibility:visible!important;transform:none!important;
+    overflow:hidden;break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .chrome,.counter,.brandmark,.hint{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 · COVER -->
+  <section class="slide cover active">
+    <div class="cover-bg"><img src="https://images.unsplash.com/photo-1464925257126-6450e871c667?auto=format&fit=crop&w=1800&q=80" alt=""/></div>
+    <div class="cover-in">
+      <div class="kick">Conversion Rate Optimization Proposal</div>
+      <h1 class="title">Turning a strong<br>product page into a<br><span class="it">high-conversion</span> one.</h1>
+      <p class="lede">A CRO teardown and redesign of the Pure Korean Marine Collagen Peptides page for Wellbeing Nutrition.</p>
+      <div class="meta">
+        <div><b>Prepared for</b>Troopod · nj@troopod.io</div>
+        <div><b>Scope</b>Audit · Strategy · Redesign + live page</div>
+        <div><b>Deliverables</b>This deck &amp; an enhanced HTML page</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · CONTEXT -->
+  <section class="slide">
+    <div class="kick">The starting point</div>
+    <h2 class="head">A genuinely good page. That's exactly the problem.</h2>
+    <div class="cols c2-wide">
+      <p class="lede">The current page isn't broken. It has real assets most competitors can't match: strong certifications, 571 reviews at 4.9★, and clinical backing. But "not broken" leaves money on the table. The buyer is <b>skeptical, results-doubting, and worried about one thing above all: will it taste fishy and will it actually work?</b> The page never answers those at the moment of decision.</p>
+      <div class="stat-row" style="flex-direction:column;gap:1.4rem">
+        <div class="stat"><b>4.9★</b><span>571 verified reviews; trust is already earned</span></div>
+        <div class="stat"><b>8–12<span style="font-size:1rem"> wks</span></b><span>delayed payoff: the core conversion obstacle</span></div>
+        <div class="stat"><b>2 doubts</b><span>"does it work?" &amp; "is it fishy?", both unaddressed</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · METHOD -->
+  <section class="slide deep">
+    <div class="kick">Approach</div>
+    <h2 class="head">How I pulled this apart.</h2>
+    <div class="cols c3">
+      <div><div class="eyebrow-num">i.</div><h3 style="font-size:1.3rem;margin:.4rem 0 .5rem">Audit the funnel</h3><p class="lede" style="font-size:.95rem">Mapped every section of the live page against DTC-supplement CRO best practice and benchmarked Vital Proteins &amp; Ritual for offer, transparency and proof.</p></div>
+      <div><div class="eyebrow-num">ii.</div><h3 style="font-size:1.3rem;margin:.4rem 0 .5rem">Find the leaks</h3><p class="lede" style="font-size:.95rem">Isolated 12 specific conversion leaks, then ranked them by ICE (Impact × Confidence × Ease) into a test roadmap, not a wishlist.</p></div>
+      <div><div class="eyebrow-num">iii.</div><h3 style="font-size:1.3rem;margin:.4rem 0 .5rem">Rebuild &amp; prove</h3><p class="lede" style="font-size:.95rem">Redesigned the page around the highest-ICE moves and built it as a working, responsive HTML page, not a static mockup.</p></div>
+    </div>
+    <div class="chips"><span class="chip">Live page teardown</span><span class="chip">Competitive benchmark</span><span class="chip">ICE prioritisation</span><span class="chip">Working redesign</span><span class="chip">Measurement plan</span></div>
+  </section>
+
+  <!-- 4 · WHAT WORKS / WHAT LEAKS -->
+  <section class="slide light">
+    <div class="kick">The audit</div>
+    <h2 class="head">What's earning trust vs. what's leaking sales.</h2>
+    <div class="cols c2">
+      <div class="split-list">
+        <h3>Keep &amp; amplify</h3>
+        <ul>
+          <li>Trust competitors can't match: FDA facility, FSSAI, 5 lab reports, mercury &amp; heavy-metal tested</li>
+          <li>571 reviews at 4.9★ with a believable 5★/4★ split</li>
+          <li>Real scientific edge: &lt;1000 Da, Type I &amp; III, salmon-sourced</li>
+          <li>Clear multi-pack discounting and a deep FAQ</li>
+        </ul>
+      </div>
+      <div class="split-list leak">
+        <h3>Fix · where conversions leak</h3>
+        <ul>
+          <li>Superlative headline ("World's Finest") with no outcome + timeline promise</li>
+          <li>The fishy-taste &amp; "when will it work" objections are never surfaced</li>
+          <li>No money-back guarantee; no Subscribe &amp; Save; no per-day price reframe</li>
+          <li>No sticky cart; proof, science &amp; objections buried below the fold</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · THE 5 BATTLES -->
+  <section class="slide">
+    <div class="kick">What actually blocks the sale</div>
+    <h2 class="head">Five doubts stand between view and purchase.</h2>
+    <div class="rows">
+      <div class="row"><span class="lead">1</span><span class="rt"><b>"Will it work, and when?"</b> <span>The delayed 8–12 week payoff creates doubt the page never resolves at the CTA.</span></span></div>
+      <div class="row"><span class="lead">2</span><span class="rt"><b>"Will it taste fishy?"</b> <span>Marine collagen's #1 category objection, left entirely to the buyer's imagination.</span></span></div>
+      <div class="row"><span class="lead">3</span><span class="rt"><b>"Is it safe / clean?"</b> <span>The answer exists in lab reports, but isn't framed as reassurance where it matters.</span></span></div>
+      <div class="row"><span class="lead">4</span><span class="rt"><b>"Is ₹1,529 worth it?"</b> <span>A lump sum with no per-day reframe and no risk reversal feels expensive.</span></span></div>
+      <div class="row"><span class="lead">5</span><span class="rt"><b>"Why should I trust this brand?"</b> <span>Proof is present but scattered, not concentrated into a confident moment.</span></span></div>
+    </div>
+  </section>
+
+  <!-- 6 · STRATEGY PILLARS -->
+  <section class="slide deep">
+    <div class="kick">Strategy</div>
+    <h2 class="head">Eight moves, one principle: <span class="it">answer the doubt before it's asked.</span></h2>
+    <div class="pillars">
+      <div class="pillar"><div class="pn">i.</div><h3>Promise, not superlative</h3><p>Lead with outcome + timeline + guarantee.</p></div>
+      <div class="pillar"><div class="pn">ii.</div><h3>Irresistible offer</h3><p>Subscribe &amp; Save as default; best-value cycle anchored.</p></div>
+      <div class="pillar"><div class="pn">iii.</div><h3>Compress the decision</h3><p>Proof + per-day price + CTA in one view; sticky bar.</p></div>
+      <div class="pillar"><div class="pn">iv.</div><h3>Weaponise transparency</h3><p>Molecular science + sourcing + comparison, made visual.</p></div>
+      <div class="pillar"><div class="pn">v.</div><h3>Crush 5 objections</h3><p>Taste, timeline, safety, veg, value, head-on.</p></div>
+      <div class="pillar"><div class="pn">vi.</div><h3>Concentrate proof</h3><p>Timeline of results + verified reviews as one moment.</p></div>
+      <div class="pillar"><div class="pn">vii.</div><h3>Reverse the risk</h3><p>Visible 90-day money-back promise.</p></div>
+      <div class="pillar"><div class="pn">viii.</div><h3>Mobile-first &amp; fast</h3><p>Thumb-reachable CTA, lazy media, no shift.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 · BEFORE / AFTER -->
+  <section class="slide light">
+    <div class="kick">The redesign, in moves</div>
+    <h2 class="head">From "here's a product" to "here's your result."</h2>
+    <div class="ba">
+      <div class="before">
+        <div class="tag">Current page</div>
+        <ul>
+          <li>"World's Finest… Powder" superlative headline</li>
+          <li>Results timeline hidden in a 20-question FAQ</li>
+          <li>Taste objection never mentioned</li>
+          <li>Flat 15% packs; no subscription, no guarantee</li>
+          <li>₹1,529 shown as a lump sum</li>
+          <li>14-image carousel + tabs = decision overload</li>
+        </ul>
+      </div>
+      <div class="after">
+        <div class="tag">Redesigned page</div>
+        <ul>
+          <li>"Firmer skin, drawn from the deep sea" + 8–12 wk promise</li>
+          <li>Week 2 / 4 / 8 / 12 results timeline, front and centre</li>
+          <li>An "honest answers" section that leads with taste</li>
+          <li>Subscribe &amp; Save (−20%) default + 90-day guarantee</li>
+          <li>Reframed to "from ₹48/day, less than a coffee"</li>
+          <li>One cinematic hero, sticky buy bar, clear path</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · SHOWCASE -->
+  <section class="slide cover">
+    <div class="cover-bg"><img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1800&q=80" alt=""/></div>
+    <div class="cover-in">
+      <div class="kick">Built, not mocked</div>
+      <h2 class="head" style="max-width:26ch">A working page in a deep-sea apothecary art direction.</h2>
+      <p class="lede">Full-bleed marine photography, an editorial serif voice, a live offer engine with per-day pricing, and a sticky buy bar — all responsive and reduced-motion safe. Open <a class="link" href="index.html">index.html</a> alongside this deck.</p>
+      <div class="chips">
+        <span class="chip"><b>Live</b> offer &amp; per-day price engine</span>
+        <span class="chip"><b>Sticky</b> add-to-cart</span>
+        <span class="chip"><b>Results</b> timeline</span>
+        <span class="chip"><b>Objection</b> crusher</span>
+        <span class="chip"><b>Marine-vs-bovine</b> comparison</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · ROADMAP -->
+  <section class="slide">
+    <div class="kick">Prioritised roadmap</div>
+    <h2 class="head">Sequenced by ICE, shipped in two sprints.</h2>
+    <table class="ice">
+      <thead><tr><th>#</th><th>Experiment</th><th>Impact</th><th>Conf.</th><th>Ease</th><th>ICE</th><th>Sprint</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>Promise + timeline hero</b> (retire superlative)</td><td class="n">9</td><td class="n">8</td><td class="n">8</td><td class="ice-score">8.3</td><td>1</td></tr>
+        <tr><td>2</td><td><b>90-day money-back guarantee</b></td><td class="n">8</td><td class="n">8</td><td class="n">9</td><td class="ice-score">8.3</td><td>1</td></tr>
+        <tr><td>3</td><td><b>Subscribe &amp; Save</b> as default</td><td class="n">9</td><td class="n">7</td><td class="n">7</td><td class="ice-score">7.7</td><td>1</td></tr>
+        <tr><td>4</td><td><b>Sticky add-to-cart</b> bar</td><td class="n">7</td><td class="n">8</td><td class="n">8</td><td class="ice-score">7.7</td><td>1</td></tr>
+        <tr><td>5</td><td><b>Cost-per-day</b> price reframe</td><td class="n">7</td><td class="n">7</td><td class="n">9</td><td class="ice-score">7.7</td><td>1</td></tr>
+        <tr><td>6</td><td>Objection-crusher (taste, results, safety)</td><td class="n">8</td><td class="n">7</td><td class="n">7</td><td class="ice-score">7.3</td><td>2</td></tr>
+        <tr><td>7</td><td>Results timeline module</td><td class="n">8</td><td class="n">7</td><td class="n">6</td><td class="ice-score">7.0</td><td>2</td></tr>
+        <tr><td>8</td><td>Photo/video UGC + verified reviews</td><td class="n">8</td><td class="n">6</td><td class="n">6</td><td class="ice-score">6.7</td><td>2</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 10 · IMPACT -->
+  <section class="slide light">
+    <div class="kick">Projected impact</div>
+    <h2 class="head">A credible path from ~2.5% to ~3.5% CVR.</h2>
+    <div class="cols c2-wide">
+      <div>
+        <div class="impact">
+          <div class="col base"><div class="v">2.5%</div><div class="bar" style="height:120px"></div><div class="l">Baseline</div></div>
+          <div class="col"><div class="v">~3.2%</div><div class="bar" style="height:154px"></div><div class="l">After Sprint 1</div></div>
+          <div class="col"><div class="v">~3.5%</div><div class="bar" style="height:168px"></div><div class="l">After Sprint 2</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="lede">These are <b>hypotheses with ranges, validated by A/B testing</b>, not promises. Sprint 1 alone (hero, guarantee, subscription, sticky CTA, per-day price) targets a <b>+20–45% relative</b> lift, with Subscribe &amp; Save driving LTV independent of CVR.</p>
+        <div class="stat-row" style="margin-top:1.6rem">
+          <div class="stat"><b>+20–45%</b><span>Sprint 1 relative CVR lift (target)</span></div>
+          <div class="stat"><b>+15–30%</b><span>orders shifting to subscription</span></div>
+        </div>
+        <p style="font-size:.8rem;color:var(--ink-dim);margin-top:1.4rem">Measured in GA4 + Shopify funnel with session replay. Guardrails: return rate, refund rate, subscription churn.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · CLOSE -->
+  <section class="slide deep cover">
+    <div class="cover-bg"><img src="https://images.unsplash.com/photo-1509192979022-927d6dcf72fa?auto=format&fit=crop&w=1800&q=80" alt=""/></div>
+    <div class="cover-in">
+      <div class="kick">Next steps</div>
+      <h2 class="head" style="max-width:20ch">Ship Sprint 1, measure, then compound.</h2>
+      <div class="rows" style="max-width:60ch">
+        <div class="row"><span class="lead">1</span><span class="rt"><b>Instrument</b> <span>GA4 funnel + heatmaps to set a clean CVR baseline.</span></span></div>
+        <div class="row"><span class="lead">2</span><span class="rt"><b>A/B the hero, guarantee &amp; subscription</b> <span>the three highest-ICE moves, first.</span></span></div>
+        <div class="row"><span class="lead">3</span><span class="rt"><b>Roll winners, layer Sprint 2</b> <span>objections, timeline, UGC.</span></span></div>
+      </div>
+      <p class="lede" style="margin-top:2rem">Thank you. The working redesign is in <a class="link" href="index.html">index.html</a>.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="brandmark">
+  <svg width="24" height="24" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" stroke="#B9B4A6" stroke-width="1.2"/><path d="M13 24c3-6 5-9 9-9s6 3 9 9" stroke="#CB8438" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+  Wellbeing Nutrition · CRO
+</div>
+<div class="counter"><b id="cur">1</b> / <span id="tot">11</span></div>
+
+<div class="chrome">
+  <div class="dots" id="dots"></div>
+  <div class="navb"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div>
+</div>
+<div class="hint">← → or Space to navigate · click dots to jump</div>
+
+<script>
+(function(){
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i=0,n=slides.length;
+  document.getElementById('tot').textContent=n;
+  var dotsWrap=document.getElementById('dots');
+  slides.forEach(function(_,k){var b=document.createElement('button');b.className='dot'+(k===0?' on':'');b.setAttribute('aria-label','Slide '+(k+1));b.addEventListener('click',function(){go(k);});dotsWrap.appendChild(b);});
+  var dots=Array.prototype.slice.call(dotsWrap.children);
+  function go(k){
+    if(k<0)k=0;if(k>n-1)k=n-1;
+    slides[i].classList.remove('active');dots[i].classList.remove('on');
+    i=k;
+    slides[i].classList.add('active');dots[i].classList.add('on');
+    document.getElementById('cur').textContent=i+1;
+    // dark/light chrome adapt
+    document.body.style.setProperty('--x',i);
+  }
+  function next(){go(i+1);}function prev(){go(i-1);}
+  document.getElementById('next').addEventListener('click',next);
+  document.getElementById('prev').addEventListener('click',prev);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
+    else if(e.key==='Home'){go(0);}else if(e.key==='End'){go(n-1);}
+  });
+  // touch
+  var x0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){dx<0?next():prev();}x0=null;},{passive:true});
+})();
+</script>
+</body>
+</html>
